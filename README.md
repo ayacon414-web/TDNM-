@@ -1,2 +1,439 @@
 # TDNM-
 徒然なるままに
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDNM | everything flows</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts: Noto Serif JP & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tdnm: {
+                            main: '#4A3A2A',    /* メインカラー（濃い茶） */
+                            text: '#2F4F3A',    /* メインテキスト（深い緑） */
+                            accent: '#8C6A3D',  /* アクセント（黄土色・ゴールド系） */
+                            bg: '#F5F1EB',      /* 背景色（生成り） */
+                            sub: '#D8B58A',     /* サブカラー（淡い茶） */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif JP"', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        widest: '.25em',
+                        poetic: '.35em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F5F1EB;
+            color: #2F4F3A;
+            overflow-x: hidden;
+        }
+
+        /* 和紙のような微細なテクスチャ */
+        .texture-overlay::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/p6.png');
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: multiply;
+        }
+
+        /* 縦書き設定 */
+        .vertical-rl {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+
+        /* ヒーローセクションの背景画像とグラデーション */
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(245, 241, 235, 0.3), rgba(245, 241, 235, 0.8) 80%, #F5F1EB 100%);
+        }
+
+        /* スムーススクロール */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* カスタム選択色 */
+        ::selection {
+            background: #D8B58A;
+            color: #4A3A2A;
+        }
+    </style>
+</head>
+<body class="font-serif texture-overlay">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-start transition-all duration-300 bg-tdnm-bg/80 backdrop-blur-sm">
+        <a href="#" class="font-sans font-medium tracking-widest text-lg text-tdnm-main">TDNM</a>
+        
+        <div class="hidden md:flex flex-col items-end space-y-2">
+            <div class="flex space-x-12 text-xs tracking-widest uppercase font-sans text-tdnm-main">
+                <a href="#philosophy" class="hover:text-tdnm-accent transition-colors">Philosophy</a>
+                <a href="#stance" class="hover:text-tdnm-accent transition-colors">Stance</a>
+                <a href="#whatwedo" class="hover:text-tdnm-accent transition-colors">Service</a>
+                <a href="#story" class="hover:text-tdnm-accent transition-colors">Story</a>
+            </div>
+            <a href="#contact" class="text-xs tracking-widest border-b border-tdnm-accent pb-1 text-tdnm-accent hover:text-tdnm-main transition-colors mt-2">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Icon (Simple placeholder) -->
+        <div class="md:hidden text-tdnm-main">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </div>
+    </nav>
+
+    <!-- ① Hero Section -->
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden hero-bg">
+        <div class="absolute inset-0 hero-gradient"></div>
+
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 h-full flex flex-col md:flex-row items-center justify-center md:justify-between">
+            
+            <!-- メインコピーエリア -->
+            <div class="text-center md:text-left md:ml-12 lg:ml-24 mt-20 md:mt-0" data-aos="fade-up" data-aos-duration="1500">
+                <h1 class="text-2xl md:text-3xl lg:text-4xl leading-[3.5rem] md:leading-[5rem] font-medium text-tdnm-main tracking-widest mb-8">
+                    変わることは、<br class="md:hidden">怖くない。<br>
+                    <span class="text-xl md:text-3xl lg:text-4xl block mt-6 md:mt-8 font-light">
+                        風のように、光のように、<br><br>
+
+                        自然体で。
+                    </span>
+                </h1>
+                <p class="font-sans font-light tracking-[0.4em] text-tdnm-accent text-sm md:text-base uppercase mb-4">everything flows</p>
+                <div class="w-12 h-px bg-tdnm-main/50 mx-auto md:mx-0"></div>
+            </div>
+
+            <!-- 縦書きサブコピー -->
+            <div class="absolute md:relative right-6 top-32 md:top-auto md:right-auto md:mr-12 lg:mr-24 h-64 md:h-auto" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="500">
+                <p class="vertical-rl text-lg md:text-2xl tracking-[0.8em] text-tdnm-main font-light border-l border-tdnm-accent/30 pl-6 py-4 opacity-80">
+                    徒然なるままに。
+                </p>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3 opacity-60">
+            <span class="text-[10px] tracking-[0.3em] font-sans text-tdnm-main uppercase">Scroll</span>
+            <div class="w-px h-12 bg-tdnm-main/30 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1/2 bg-tdnm-main animate-scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ② Philosophy (思想) -->
+    <section id="philosophy" class="py-24 md:py-40 relative">
+        <div class="max-w-3xl mx-auto px-6 text-center" data-aos="fade-up">
+            <span class="font-sans text-xs tracking-widest text-tdnm-accent block mb-10 uppercase">Philosophy</span>
+            
+            <div class="space-y-12 md:space-y-16 text-tdnm-text leading-[2.5rem] md:leading-[3.5rem] text-base md:text-lg tracking-widest">
+                <p>
+                    世界は、ずっと流れ続けている。<br>
+                    変わることは、失うことじゃない。<br>
+                    形を変えながら、本質は残っていく。
+                </p>
+                <div class="w-px h-16 bg-tdnm-sub/50 mx-auto"></div>
+                <p>
+                    TDNMは、<br>
+                    「徒然なるままに」という感覚を<br class="md:hidden">大切にしながら、<br>
+                    無理をせず、でも誤魔化さず、<br>
+                    自分のスタンスで創ることを<br class="md:hidden">選び続けるチームです。
+                </p>
+                <p class="text-xl md:text-2xl text-tdnm-main font-medium mt-8">
+                    ゆるく、生きる。<br>
+                    でも、芯はまっすぐに。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ③ Our Stance (価値観) -->
+    <section id="stance" class="py-24 md:py-32 bg-white/40">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="font-sans text-xs tracking-widest text-tdnm-accent uppercase">Our Stance</span>
+                <h2 class="mt-4 text-2xl font-medium text-tdnm-main tracking-widest">大切にしていること</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 text-center">
+                <!-- Stance 1 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-24 h-24 mx-auto bg-tdnm-main/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-tdnm-main/10 transition-colors">
+                        <i data-lucide="waves" class="w-8 h-8 text-tdnm-main opacity-70"></i>
+                    </div>
+                    <h3 class="font-sans text-xl tracking-widest text-tdnm-main mb-2">Flow</h3>
+                    <p class="text-sm text-tdnm-accent tracking-widest mb-6">変化を恐れない。</p>
+                    <p class="text-sm leading-loose text-tdnm-text">
+                        世界も、人も、いつも流れている。<br>
+                        その流れに乗るしなやかさを。
+                    </p>
+                </div>
+
+                <!-- Stance 2 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="150">
+                    <div class="w-24 h-24 mx-auto bg-tdnm-main/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-tdnm-main/10 transition-colors">
+                        <i data-lucide="leaf" class="w-8 h-8 text-tdnm-main opacity-70"></i>
+                    </div>
+                    <h3 class="font-sans text-xl tracking-widest text-tdnm-main mb-2">Natural</h3>
+                    <p class="text-sm text-tdnm-accent tracking-widest mb-6">肩の力を抜く。</p>
+                    <p class="text-sm leading-loose text-tdnm-text">
+                        無理のない形が、いちばん強い。<br>
+                        飾らない自分でいること。
+                    </p>
+                </div>
+
+                <!-- Stance 3 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-24 h-24 mx-auto bg-tdnm-main/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-tdnm-main/10 transition-colors">
+                        <i data-lucide="gem" class="w-8 h-8 text-tdnm-main opacity-70"></i>
+                    </div>
+                    <h3 class="font-sans text-xl tracking-widest text-tdnm-main mb-2">Core</h3>
+                    <p class="text-sm text-tdnm-accent tracking-widest mb-6">ゆるくても、ブレない。</p>
+                    <p class="text-sm leading-loose text-tdnm-text">
+                        静かな芯を持つこと。<br>
+                        それが、私たちの美学。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ④ What We Do (事業内容) -->
+    <section id="whatwedo" class="py-24 md:py-40">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-start gap-12 md:gap-24">
+                
+                <div class="md:w-1/3 sticky top-32" data-aos="fade-right">
+                    <span class="font-sans text-xs tracking-widest text-tdnm-accent block mb-6 uppercase">What We Do</span>
+                    <h2 class="text-3xl md:text-4xl leading-snug font-medium text-tdnm-main mb-8">
+                        私たちは<br>
+                        「意味」から<br>
+                        つくります。
+                    </h2>
+                    <div class="w-12 h-1 bg-tdnm-sub"></div>
+                </div>
+
+                <div class="md:w-2/3 space-y-16 md:mt-24">
+                    <!-- Item 1 -->
+                    <div class="border-b border-tdnm-main/10 pb-12" data-aos="fade-up">
+                        <span class="text-xs font-sans text-tdnm-sub tracking-widest mb-2 block">01</span>
+                        <h3 class="text-xl font-medium text-tdnm-main mb-4 tracking-widest">ブランディング / デザイン</h3>
+                        <p class="text-tdnm-text leading-loose">
+                            世界観や価値観を、かたちにします。<br>
+                            見た目の美しさだけでなく、その奥にある想いをデザインで表現します。
+                        </p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="border-b border-tdnm-main/10 pb-12" data-aos="fade-up">
+                        <span class="text-xs font-sans text-tdnm-sub tracking-widest mb-2 block">02</span>
+                        <h3 class="text-xl font-medium text-tdnm-main mb-4 tracking-widest">企画・コンセプト設計</h3>
+                        <p class="text-tdnm-text leading-loose">
+                            「何をするか」の前に、「何を伝えるか」を言語化します。<br>
+                            迷いのない指針となるコンセプトを、一緒に紡ぎ出します。
+                        </p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="border-b border-tdnm-main/10 pb-12" data-aos="fade-up">
+                        <span class="text-xs font-sans text-tdnm-sub tracking-widest mb-2 block">03</span>
+                        <h3 class="text-xl font-medium text-tdnm-main mb-4 tracking-widest">Web / ビジュアル制作</h3>
+                        <p class="text-tdnm-text leading-loose">
+                            見た目だけで終わらない、思想のある表現を。<br>
+                            サイトを訪れた人に、空気感まで伝わる制作を行います。
+                        </p>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="pb-12" data-aos="fade-up">
+                        <span class="text-xs font-sans text-tdnm-sub tracking-widest mb-2 block">04</span>
+                        <h3 class="text-xl font-medium text-tdnm-main mb-4 tracking-widest">ロジスティクス</h3>
+                        <p class="text-tdnm-text leading-loose">
+                            伝えたいものが、ちゃんと届く仕組みまで設計します。<br>
+                            モノの流れも、想いの流れも、スムーズにつなぎます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑤ How We Work (制作スタンス) -->
+    <section class="py-24 bg-tdnm-main text-tdnm-bg relative overflow-hidden">
+        <!-- 背景装飾 -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+             <div class="absolute right-0 bottom-0 w-96 h-96 bg-tdnm-sub rounded-full blur-[100px]"></div>
+             <div class="absolute left-10 top-10 w-64 h-64 bg-tdnm-accent rounded-full blur-[80px]"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10" data-aos="zoom-in" data-aos-duration="1200">
+            <i data-lucide="feather" class="w-8 h-8 text-tdnm-sub mx-auto mb-10 opacity-80"></i>
+            <h2 class="text-lg md:text-2xl leading-[3rem] md:leading-[4rem] font-light tracking-widest">
+                TDNMは、<br>
+                「何を作るか」より、<br>
+                「何を伝えるか」を一緒に考えるチームです。<br>
+                <br>
+                きれいなデザインより、正直なメッセージ。<br>
+                目立つ表現より、残る意味。<br>
+                流行ではなく、スタンスをつくる。<br>
+                <br>
+                それが、私たちの仕事です。
+            </h2>
+        </div>
+    </section>
+
+    <!-- ⑥ Story (ストーリー / 代表の背景) -->
+    <section id="story" class="py-24 md:py-40 bg-white/60">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <!-- Image Side -->
+                <div class="md:w-1/2 relative" data-aos="fade-right">
+                    <div class="relative overflow-hidden rounded-sm shadow-xl aspect-[3/4] md:aspect-[4/5] max-w-sm mx-auto">
+                        <img src="https://images.unsplash.com/photo-1528640936814-4460bc07529f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
+                             alt="Gentle light and nature" 
+                             class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <!-- 装飾 -->
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 border border-tdnm-main/20 -z-10 hidden md:block"></div>
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-tdnm-sub/10 -z-10 rounded-full hidden md:block"></div>
+                </div>
+
+                <!-- Text Side -->
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <span class="font-sans text-xs tracking-widest text-tdnm-accent block mb-8 uppercase">Story</span>
+                    
+                    <div class="prose prose-p:text-tdnm-text prose-headings:text-tdnm-main">
+                        <p class="text-lg mb-8 leading-loose font-medium text-tdnm-main">
+                            仏教の精神に触れながら育ち、<br>
+                            静かな「芯」を大切にして生きてきました。
+                        </p>
+                        <p class="font-sans text-xs tracking-[0.3em] text-tdnm-accent mb-8 uppercase">everything flows</p>
+                        
+                        <div class="space-y-6 text-sm md:text-base leading-loose text-tdnm-text">
+                            <p>
+                                すべては流れ、変わり続ける。<br>
+                                その感覚を信じて、<br>
+                                ゆるく、でもまっすぐに、生きてきた人生。
+                            </p>
+                            <p>
+                                ４人の子育ても、<br>
+                                管理しすぎず、縛りすぎず、<br>
+                                それぞれの流れを信じて見守る。<br>
+                                その結果、<br>
+                                みんな自立した人として育ってくれました。感謝。
+                            </p>
+                            <div class="pl-4 border-l-2 border-tdnm-sub my-6 py-2">
+                                <p class="italic text-tdnm-main">
+                                    「コントロールしないこと」<br>
+                                    「流れを信じること」
+                                </p>
+                            </div>
+                            <p>
+                                それは、人生だけでなく、<br>
+                                ものづくりのスタンスにもつながっています。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑦ Contact -->
+    <section id="contact" class="py-24 md:py-32 flex flex-col items-center text-center">
+        <div class="max-w-2xl px-6" data-aos="fade-up">
+            <span class="font-sans text-xs tracking-widest text-tdnm-accent block mb-8 uppercase">Contact</span>
+            <h2 class="text-2xl md:text-3xl font-medium text-tdnm-main tracking-widest mb-10">
+                一緒に、「伝える意味」から<br>
+                考えましょう。
+            </h2>
+            <p class="text-tdnm-text leading-loose mb-12">
+                まだ言葉になっていない想いでも構いません。<br>
+                流れの途中の構想でも、大歓迎です。
+            </p>
+            
+            <a href="mailto:info@tdnm.jp" class="inline-block border border-tdnm-main px-10 py-4 text-tdnm-main hover:bg-tdnm-main hover:text-tdnm-bg transition-all duration-300 tracking-widest text-sm">
+                お問い合わせはこちら
+            </a>
+            <p class="mt-8 text-xs tracking-widest text-tdnm-sub">info@tdnm.jp</p>
+        </div>
+    </section>
+
+    <!-- ⑧ Footer -->
+    <footer class="bg-tdnm-main text-tdnm-bg/70 py-12 md:py-16 border-t border-tdnm-sub/20">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <a href="#" class="font-sans text-xl tracking-widest text-tdnm-bg block mb-4">TDNM</a>
+                <div class="text-xs space-y-2 font-light tracking-wider">
+                    <p>運営：TDNM株式会社</p>
+                    <p>所在地：埼玉県三郷市</p>
+                    <p class="opacity-70">個人事業主届出済</p>
+                </div>
+            </div>
+            
+            <div class="text-xs tracking-[0.2em] font-sans opacity-60">
+                &copy; 2026 TDNM
+            </div>
+        </div>
+    </footer>
+
+    <!-- CSS Animation for Scroll Line -->
+    <style>
+        @keyframes scroll-line {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(200%); opacity: 0; }
+        }
+        .animate-scroll-line {
+            animation: scroll-line 2.5s cubic-bezier(0.15, 0, 0.85, 1) infinite;
+        }
+    </style>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            offset: 80,
+            duration: 1000,
+            easing: 'ease-out-cubic'
+        });
+    </script>
+</body>
+</html>
